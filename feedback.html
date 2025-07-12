@@ -118,36 +118,34 @@
       <span data-value="4">&#9733;</span>
       <span data-value="5">&#9733;</span>
     </div>
-    <form>
-      <textarea rows="5" placeholder="Your Comments.."></textarea>
-      <input type="text" placeholder="Full Name" required />
-      <input type="text" placeholder="Phone or Email" required />
+    <form action="https://formsubmit.co/eddyhoueiss@gmail.com" method="POST">
+      <input type="hidden" name="_next" value="https://grandhotelmenu.github.io/menu/thankyou.html">
+      <input type="hidden" name="_subject" value="New Customer Feedback!" />
+      <input type="hidden" name="_captcha" value="false" />
+      <input type="hidden" name="rating" id="rating-input" />
+      <textarea name="comment" rows="5" placeholder="Your Comments.." required></textarea>
+      <input type="text" name="name" placeholder="Full Name" required />
+      <input type="text" name="contact" placeholder="Phone or Email" required />
       <button type="submit" class="submit-btn">Submit</button>
     </form>
   </div>
 
   <script>
     const stars = document.querySelectorAll('#star-container span');
+    const ratingInput = document.getElementById("rating-input");
     let selectedRating = 0;
 
     stars.forEach((star, index) => {
       star.addEventListener('mouseover', () => {
-        stars.forEach((s, i) => {
-          s.classList.toggle('hover', i <= index);
-        });
+        stars.forEach((s, i) => s.classList.toggle('hover', i <= index));
       });
-
       star.addEventListener('mouseout', () => {
-        stars.forEach((s, i) => {
-          s.classList.remove('hover');
-        });
+        stars.forEach(s => s.classList.remove('hover'));
       });
-
       star.addEventListener('click', () => {
         selectedRating = index + 1;
-        stars.forEach((s, i) => {
-          s.classList.toggle('selected', i < selectedRating);
-        });
+        ratingInput.value = selectedRating;
+        stars.forEach((s, i) => s.classList.toggle('selected', i < selectedRating));
       });
     });
   </script>
